@@ -17,6 +17,7 @@ export default class SearchBar extends Component {
     handleFilterTextInputChange(e){
         this.props.onFilterTextInput(e.target.value);
     }
+
     handleInStockInputChange(e) {
         this.props.onInStockInput(e.target.checked);
     }

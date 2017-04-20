@@ -4,7 +4,7 @@ export default class ProductLine extends Component {
 
     static propTypes = {
         PRODUCTS: React.PropTypes.object,
-    }
+    };
 
     render() {
         return (

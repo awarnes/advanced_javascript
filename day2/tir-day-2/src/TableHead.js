@@ -8,14 +8,19 @@ export default class TableHead extends Component {
     static propTypes = {
         filterText: React.PropTypes.string,
         inStockOnly: React.PropTypes.bool,
-    }
+        onBuyInput: React.PropTypes.func,
+        isBuying: React.PropTypes.object,
+    };
 
     render() {
 
-        var rows = [];
-        var lastCategory = null;
-        var filterText = this.props.filterText
-        var inStockOnly = this.props.inStockOnly
+        let rows = [];
+        let lastCategory = null;
+        let filterText = this.props.filterText;
+        let inStockOnly = this.props.inStockOnly;
+        let onBuyInput = this.props.onBuyInput;
+        let isBuying = this.props.isBuying;
+
 
         this.props.products.forEach(function(product){
             if (product.category !== lastCategory){
@@ -23,12 +28,22 @@ export default class TableHead extends Component {
             }
             if (product.name.indexOf(filterText) !== -1) {
                 if (inStockOnly && product.stocked) {
-                    rows.push(<ProductData product={product} key={product.name}/>);
+                    rows.push(<ProductData
+                                product={product}
+                                key={product.name}
+                                onBuyInput={onBuyInput}
+                                isBuying={isBuying}
+                                />);
                     lastCategory = product.category;
                 } else if (inStockOnly && !product.stocked) {
                     return
                 } else {
-                    rows.push(<ProductData product={product} key={product.name}/>);
+                    rows.push(<ProductData
+                                    product={product}
+                                    key={product.name}
+                                    onBuyInput={onBuyInput}
+                                    isBuying={isBuying}
+                                />);
                     lastCategory = product.category;
                 }
             }

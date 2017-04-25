@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 export default class ProductData extends Component {
 
     // static propTypes = {
-    //     PRODUCTS: React.PropTypes.object,
+    //     product: React.PropTypes.object,
     //     isBuying: React.PropTypes.object,
-    //
     // };
 
     handleOnBuyChange(e){
@@ -16,10 +15,13 @@ export default class ProductData extends Component {
     }
 
     render() {
-        var name = this.props.product.stocked ? this.props.product.name:
+        var name = this.props.product.stocked ?
+            <span style={{color: 'black'}}>
+                {this.props.product.name}
+            </span> :
             <span style={{color: 'red'}}>
                 {this.props.product.name}
-            </span>;
+            </span>
 
         let amIChecked = this.props.isBuying[this.props.product.name] || false
         return (
